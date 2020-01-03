@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cy.dao.UserDao">
+<insert id="insertObject"
+           parameterType="com.cy.pojo.UserMsg"
+           useGeneratedKeys="true"
+           keyProperty="id">
+      insert into sys_users
+      (username,password,deptId,email,mobile,salt,valid,
+      createdTime,modifiedTime,createdUser,modifiedUser)
+      values
+    (#{username},#{password},#{deptId},#{email},#{mobile},#{salt},#{valid},
+      now(),now(),#{createdUser},#{modifiedUser})
+   </insert>
+
+
+	<select id="getRowCount" resultType="int">
+		select count(*)
+ from sys_users		
+		<include refid="use"></include>
+	</select>
+	<update id="updateValidById" >
+	update sys_users		
+		set valid=#{valid},
+           modifiedUser=#{modifiedUser},
+          modifiedTime=now()       
+       <where>       
+       id=#{id}
+       </where>		
+	</update>
+	<update id="updatePassword" >
+	update sys_users		
+		set password=#{hex},
+           salt=#{salt},
+          modifiedTime=now()       
+       <where>       
+       id=#{id}
+       </where>		
+	</update>
+	<select id="findUserByName" resultType="com.cy.pojo.UserMsg">
+	select * from sys_users where username=#{username}
+	
+	
+	</select>
+	 
+	
+	
+	<select id="get" resultMap="userd">
+		select * from sys_users 
+		<include refid="use" /> order by createdTime desc 
+		limit  #{startIndex},#{pageSize}
+		
+	</select>
+	<!-- <select id="" resultMap="">
+		select id,name,sort,parentId,(select name
+		from sys_depts a where a.id=b.parentId) parentName
+		from sys_depts b
+		
+		
+	</select> -->
+	<resultMap type="com.cy.pojo.UserDept" id="userd">
+	<association property="dept" column="deptId" select="com.cy.dao.DeptDao.selectById"></association>
+	
+	</resultMap>
+	<sql id="use">
+	<if test="username!=null and username!=''">
+	<where>
+	
+	username like "%${username}%"
+	</where>
+	</if>
+	</sql> 
+</mapper>

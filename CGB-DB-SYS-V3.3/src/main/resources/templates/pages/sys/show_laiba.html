@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>你辣么美,我那么迷醉</title>
+<style type="text/css">
+pre { border:dashed 0px blue;}
+</style>
+</head>
+<body>
+
+   <div style="width:50%; min-height:200px; margin:50px auto">
+        <pre id="language_one" style=" color:#F60; font-size:34px;"></pre>
+        <div style="display:none;" id="language_two">
+              迷醉来吧
+        许是一场风雨后的邂逅,
+        许是三生三世的追求,
+        只因一次偶然的艳遇,
+        从此迷醉于你"来吧"的温柔.
+        迷醉你刀光剑影,月上西楼.
+        迷醉你杯酒释兵,烽火戏侯.
+        从此化作永远的牵绊,绕上心头.
+        来吧读书,为你逗留
+        天涯海角,不曾分手,
+        知识海洋,不再回头.
+        
+        
+                
+        </div>
+    </div>
+    <script language="javascript">
+    var index = 0;
+    var word = document.getElementById("language_two").innerHTML;
+
+    function type() {
+        document.getElementById("language_one").innerText = word.substring(0, index++);
+    }
+    setInterval(type, 100);
+    </script>
+  
+</body>
+</html>

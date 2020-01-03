@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cy.dao.DeptDao">
+
+	<select id="findDept" resultType="com.cy.pojo.Dept">
+		select id,name,sort,parentId,(select name
+		from sys_depts a where a.id=b.parentId) parentName
+		from sys_depts b
+		
+		
+	</select>
+	<select id="selectById" resultType="com.cy.pojo.Dept">
+		select id,name,sort,parentId,(select name
+		from sys_depts a where a.id=b.parentId) parentName
+		from sys_depts b
+		
+		where id=#{deptId}
+	</select>
+	
+</mapper>

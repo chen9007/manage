@@ -1,0 +1,47 @@
+<html>
+    <head>
+        <title>我最爱的你</title>
+        <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
+</script>
+    </head>
+    <body>
+        <h2 style="color:pink">
+桃之夭夭，灼灼其华。之子于归，宜其室家。
+<br>
+桃之夭夭，有蕡其实。之子于归，宜其家室。
+<br>
+桃之夭夭，其叶蓁蓁。之子于归，宜其家人。</h2>
+    </body>
+    <script type="text/javascript"> 
+/* 鼠标特效 */
+var a_idx = 0; 
+jQuery(document).ready(function($) { 
+    $("body").click(function(e) { 
+        var a = new Array("杨硕", "陈冬冬", "张亚辉", "优雅", "霸气", "威武", "帅气" ,"无敌", "周晶", "高贵", "高薪", "牛逼"); 
+        var b = new Array("red","blue","yellow","green","pink","blue","orange");
+        var $i = $("<span/>").text(a[a_idx]); 
+        a_idx = (a_idx + 1) % a.length; 
+        b_idx = (a_idx+1)%7;/* 七中颜色变色 */
+        var x = e.pageX, 
+        y = e.pageY; 
+        $i.css({ 
+            "z-index": 9999, 
+            "top": y - 20, 
+            "left": x, 
+            "position": "absolute", 
+            "font-weight": "bold", 
+            "color": b[b_idx]
+        }); 
+        $("body").append($i); 
+        $i.animate({ 
+            "top": y - 180, 
+            "opacity": 0 
+        }, 
+        1500, 
+        function() { 
+            $i.remove(); 
+        }); 
+    }); 
+}); 
+</script>
+</html>

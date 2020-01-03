@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+*********************
+<dependency>
+    <groupId>com.google.zxing</groupId>
+    <artifactId>core</artifactId>
+    <version>3.3.0</version>
+</dependency>
+
+
+*****************************************************
+<div id="panel_datagrid_uploads_m080" title="文件上传" class="easyui-panel" data-options="fit:true" border="false">
+		<div id="toolbar_uploads_m080">
+		<a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true" onclick="openDownloadsAdd_m080()">文件下载</a>
+		</div>
+		</div>
+  <!--页面加载结束-->
+  <!--打开文件下载窗口开始  -->
+	 	<div id="dialog_add_downloads_m080"
+		style="display: none; top: 10%; width: 600px; height: 400px; padding: 10px 20px">
+	    <a href="" id="ssUrl" class="easyui-linkbutton">文件下载</a>  
+		</div>
+		
+		
+		<div>
+        <!-- 第一种方式直接使用form表单的方式实现文件上传 -->
+    	<form action="${pageContext.request.contextPath}/user/uploadfile/uploadfile1" method="post" enctype="multipart/form-data">
+    	<input type="file" name="ffFile" />
+    	<input type="submit" value="上传" />
+    	</form> 
+    </div> 
+
+<script type="text/javascript">
+var dialog_add_downloads_m080;
+function openDownloadsAdd_m080(){
+	dialog_add_downloads_m080=$('#dialog_add_downloads_m080').show().dialog({
+		title:'文件下载',
+		modal:true
+	});
+}
+//文件下载 filename是需要从数据库查询出来现将定义成固定值myfile.txt
+var filename="myfile.txt";
+$("#ssUrl").attr('href',"uploadfile/download?filename="+filename);
+
+
+</script>
+</body>
+</html>
